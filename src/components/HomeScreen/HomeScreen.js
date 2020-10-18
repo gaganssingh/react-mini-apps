@@ -13,6 +13,10 @@ const HomeScreen = () => {
             <Link to="/markdown">
                 <h1>Markdown Editor</h1>
             </Link>
+
+            <Link to="/rockpaperscissors">
+                <h1>Rock Paper Scissors</h1>
+            </Link>
         </main>
     );
 };
