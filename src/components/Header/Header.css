@@ -1,0 +1,11 @@
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #14213d;
+    color: #e5e5e5 !important;
+}
+
+.logo {
+    margin-left: 20px;
+}

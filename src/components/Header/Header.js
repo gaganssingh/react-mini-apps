@@ -2,12 +2,14 @@ import React from "react";
 import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
 
+import "./Header.css";
+
 const Header = () => {
     return (
-        <header>
-            <Link to="/">
-                <h1>React Mini Apps</h1>
-            </Link>
+        <header className="Header">
+            <div className="logo">
+                <Link to="/">React Mini Apps</Link>
+            </div>
             <Navigation />
         </header>
     );
