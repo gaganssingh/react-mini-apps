@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import Pomodoro from "./projects/Pomodoro/Pomodoro";
 
 import "./App.css";
+import Markdown from "./projects/Markdown/Markdown";
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
                 <Switch>
                     <Route exact path="/" component={HomeScreen} />
                     <Route path="/pomodoro" component={Pomodoro} />
+                    <Route path="/markdown" component={Markdown} />
                 </Switch>
             </Router>
         </>
