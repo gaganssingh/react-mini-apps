@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Hind&display=swap");
 
-body {
-    background: #e8eaf1;
+/* body {
+    
     font-family: "Hind", Arial, Helvetica, sans-serif;
-}
+} */
 
 .Markdown {
+    background: #e8eaf1;
+    color: black;
+    font-family: "Hind", Arial, Helvetica, sans-serif;
     min-height: 90vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -29,7 +32,8 @@ body {
 
 blockquote {
     font-size: 30px;
-    background: #efefef;
+    /* background: #efefef; */
+    background: red;
     border-left: 12px solid rgb(44, 163, 241);
     padding: 20px 30px;
     border-radius: 5px;
