@@ -2,8 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #14213d;
+    background-color: #060e1d;
     color: #e5e5e5 !important;
+    height: 10vh;
 }
 
 .logo {
