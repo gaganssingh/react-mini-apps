@@ -1,7 +1,12 @@
-.navigation ul {
+.Navigation ul {
     display: flex;
 }
 
-.navigation li {
+.Navigation li {
     margin-right: 10px;
+    list-style-type: none;
+}
+
+.Navigation ul li a {
+    color: #e5e5e5;
 }

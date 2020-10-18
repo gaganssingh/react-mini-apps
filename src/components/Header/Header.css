@@ -3,10 +3,13 @@
     justify-content: space-between;
     align-items: center;
     background-color: #060e1d;
-    color: #e5e5e5 !important;
     height: 10vh;
 }
 
 .logo {
     margin-left: 20px;
+}
+
+.logo a {
+    color: #e5e5e5;
 }
