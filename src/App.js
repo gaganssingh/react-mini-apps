@@ -1,12 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomeScreen from "./components/HomeScreen/HomeScreen";
-import Header from "./components/Header/Header";
-import Pomodoro from "./projects/Pomodoro/Pomodoro";
 
 import "./App.css";
-import Markdown from "./projects/Markdown/Markdown";
-import RockPaperScissors from "./projects/RockPaperScissors/RockPaperScissors";
+import Header from "./components/Header/Header";
+import HomeScreen from "./components/HomeScreen/HomeScreen";
+import Loading from "./components/Loading/Loading";
+
+// Lazy-Loaded Components
+const Pomodoro = React.lazy(() => import("./projects/Pomodoro/Pomodoro"));
+const Markdown = React.lazy(() => import("./projects/Markdown/Markdown"));
+const RockPaperScissors = React.lazy(() =>
+    import("./projects/RockPaperScissors/RockPaperScissors")
+);
+const MiniZelda = React.lazy(() => import("./projects/MiniZelda/MiniZelda"));
 
 const App = () => {
     return (
@@ -14,13 +20,16 @@ const App = () => {
             <Router>
                 <Header />
                 <Switch>
-                    <Route exact path="/" component={HomeScreen} />
-                    <Route path="/pomodoro" component={Pomodoro} />
-                    <Route path="/markdown" component={Markdown} />
-                    <Route
-                        path="/rockpaperscissors"
-                        component={RockPaperScissors}
-                    />
+                    <React.Suspense fallback={Loading}>
+                        <Route exact path="/" component={HomeScreen} />
+                        <Route path="/pomodoro" component={Pomodoro} />
+                        <Route path="/markdown" component={Markdown} />
+                        <Route path="/minizelda" component={MiniZelda} />
+                        <Route
+                            path="/rockpaperscissors"
+                            component={RockPaperScissors}
+                        />
+                    </React.Suspense>
                 </Switch>
             </Router>
         </>
