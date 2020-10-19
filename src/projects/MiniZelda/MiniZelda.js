@@ -33,7 +33,7 @@ const MiniZelda = () => {
         if (direction === "right") linkRef = linkRightRef;
 
         context.drawImage(linkRef.current, x, y);
-    }, [x, y]);
+    }, [x, y, direction]);
 
     return (
         <div className="MiniZelda">
