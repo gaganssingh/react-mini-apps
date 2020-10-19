@@ -17,6 +17,10 @@ const HomeScreen = () => {
             <Link to="/rockpaperscissors">
                 <h1>Rock Paper Scissors</h1>
             </Link>
+
+            <Link to="/minizelda">
+                <h1>Mini Zelda</h1>
+            </Link>
         </main>
     );
 };
