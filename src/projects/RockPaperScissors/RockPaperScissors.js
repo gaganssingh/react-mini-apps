@@ -1,9 +1,7 @@
 import React from "react";
 
-import "./RockPaperScissors.css";
-
 const RockPaperScissors = () => {
-    return <div>RockPaperScissors</div>;
+    return <div>Rock paper Scissors</div>;
 };
 
 export default RockPaperScissors;
