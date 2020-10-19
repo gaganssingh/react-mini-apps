@@ -13,6 +13,9 @@ const Infinitely = () => {
                     headers: {
                         Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_API_KEY}`,
                     },
+                    params: {
+                        per_page: 30,
+                    },
                 });
                 setImages(data);
             };
