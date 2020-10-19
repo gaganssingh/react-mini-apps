@@ -20,7 +20,8 @@ const App = () => {
             <Router>
                 <Header />
                 <Switch>
-                    <React.Suspense fallback={Loading}>
+                    {/* <React.Suspense fallback={Loading}> */}
+                    <React.Suspense fallback={<h2>Loading...</h2>}>
                         <Route exact path="/" component={HomeScreen} />
                         <Route path="/pomodoro" component={Pomodoro} />
                         <Route path="/markdown" component={Markdown} />

@@ -1,6 +1,6 @@
 .MiniZelda {
     overflow: hidden;
-    /* background-image: url('https://i.imgur.com/noNWRPk.png'); */
+    background-image: url("https://i.imgur.com/noNWRPk.png");
     position: relative;
     height: 90vh;
 }
@@ -22,8 +22,8 @@
     font-size: 16px;
     width: 60px;
     height: 40px;
-    background: rgba(43, 159, 75, 0.811);
-    color: rgb(167, 220, 182);
+    background: rgba(160, 1, 1, 0.9);
+    color: rgb(255, 255, 255);
     border: none;
     border-radius: 8px;
     outline: none;
@@ -31,8 +31,7 @@
 }
 
 .MiniZelda-arrows button:hover {
-    background: rgba(51, 177, 87, 0.811);
-    color: #fff;
+    background: rgba(80, 1, 1, 0.9);
 }
 
 .MiniZelda-arrows button:first-child {

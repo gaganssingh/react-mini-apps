@@ -1,11 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import useMovement from "./hooks/useMovement";
 
 import "./MiniZelda.css";
 
 const MiniZelda = () => {
     const canvasRef = useRef(null);
-    const [x, setX] = useState(0);
-    const [y, setY] = useState(0);
+    const linkDownRef = useRef(null);
+    const linkUpRef = useRef(null);
+    const linkRightRef = useRef(null);
+    const linkLeftRef = useRef(null);
+
+    // from custom hook
+    const { x, y, direction, move } = useMovement();
 
     // Initializing the height and width of html canvas
     useEffect(() => {
@@ -14,11 +20,19 @@ const MiniZelda = () => {
         context.canvas.width = window.innerWidth;
     }, []);
 
-    // Moving box within the html canvas
+    // Moving box within the html canvas, when x or y changes
     useEffect(() => {
         const context = canvasRef.current.getContext("2d");
-        context.clearRect(0, 0, window.innerHeight, window.innerWidth);
-        context.fillRect(x, y, 100, 100);
+        context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        // context.fillRect(x, y, 100, 100);
+
+        let linkRef;
+        if (direction === "down") linkRef = linkDownRef;
+        if (direction === "up") linkRef = linkUpRef;
+        if (direction === "left") linkRef = linkLeftRef;
+        if (direction === "right") linkRef = linkRightRef;
+
+        context.drawImage(linkRef.current, x, y);
     }, [x, y]);
 
     return (
@@ -26,17 +40,33 @@ const MiniZelda = () => {
             <canvas ref={canvasRef} />
 
             <div className="MiniZelda-arrows">
-                <button onClick={() => setY((y) => y - 20)}>Up</button>
-                <button onClick={() => setX((x) => x - 20)}>Left</button>
-                <button onClick={() => setY((y) => y + 20)}>Down</button>
-                <button onClick={() => setX((x) => x + 20)}>Right</button>
+                <button onClick={() => move("up")}>Up</button>
+                <button onClick={() => move("left")}>Left</button>
+                <button onClick={() => move("down")}>Down</button>
+                <button onClick={() => move("right")}>Right</button>
             </div>
 
             <div className="MiniZelda-images">
-                <img src="https://i.imgur.com/JYUB0m3.png" alt="Down" />
-                <img src="https://i.imgur.com/GEXD7bk.gif" alt="Right" />
-                <img src="https://i.imgur.com/XSA2Oom.gif" alt="Up" />
-                <img src="https://i.imgur.com/4LGAZ8t.gif" alt="Left" />
+                <img
+                    ref={linkDownRef}
+                    src="https://i.imgur.com/JYUB0m3.png"
+                    alt="Down"
+                />
+                <img
+                    ref={linkRightRef}
+                    src="https://i.imgur.com/GEXD7bk.gif"
+                    alt="Right"
+                />
+                <img
+                    ref={linkUpRef}
+                    src="https://i.imgur.com/XSA2Oom.gif"
+                    alt="Up"
+                />
+                <img
+                    ref={linkLeftRef}
+                    src="https://i.imgur.com/4LGAZ8t.gif"
+                    alt="Left"
+                />
             </div>
         </div>
     );
