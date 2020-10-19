@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "./Infinitely.css";
 
 const Infinitely = () => {
+    const [images, setImages] = useState([]);
     useEffect(() => {
         const unsplashUrl = "https://api.unsplash.com/photos";
         try {
@@ -13,7 +14,7 @@ const Infinitely = () => {
                         Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_API_KEY}`,
                     },
                 });
-                console.log(data);
+                setImages(data);
             };
 
             fetchImages();
@@ -21,6 +22,8 @@ const Infinitely = () => {
             console.log(error);
         }
     }, []);
+
+    console.log(images);
 
     // If Unsplash access key is not present, return error
     if (process.env.REACT_APP_UNSPLASH_API_KEY === undefined) {
@@ -42,11 +45,11 @@ const Infinitely = () => {
             </form>
 
             <div className="Infinitely-image-grid">
-                {[...Array(100)].map((_, index) => (
-                    <div className="Infinitely-image" key={index}>
+                {images.map((image) => (
+                    <div className="Infinitely-image" key={image.id}>
                         <img
-                            src="https://placekitten.com/g/1920/1080"
-                            alt="Sample"
+                            src={image.urls.regular}
+                            alt={image.alt_description}
                         />
                     </div>
                 ))}
