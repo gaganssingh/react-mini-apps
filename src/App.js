@@ -9,10 +9,11 @@ import Loading from "./components/Loading/Loading";
 // Lazy-Loaded Components
 const Pomodoro = React.lazy(() => import("./projects/Pomodoro/Pomodoro"));
 const Markdown = React.lazy(() => import("./projects/Markdown/Markdown"));
+const MiniZelda = React.lazy(() => import("./projects/MiniZelda/MiniZelda"));
+const Infinitely = React.lazy(() => import("./projects/Infinitely/Infinitely"));
 const RockPaperScissors = React.lazy(() =>
     import("./projects/RockPaperScissors/RockPaperScissors")
 );
-const MiniZelda = React.lazy(() => import("./projects/MiniZelda/MiniZelda"));
 
 const App = () => {
     return (
@@ -26,6 +27,7 @@ const App = () => {
                         <Route path="/pomodoro" component={Pomodoro} />
                         <Route path="/markdown" component={Markdown} />
                         <Route path="/minizelda" component={MiniZelda} />
+                        <Route path="/infinitely" component={Infinitely} />
                         <Route
                             path="/rockpaperscissors"
                             component={RockPaperScissors}
