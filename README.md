@@ -18,4 +18,4 @@ Canvas Api
 
 ## Infinitely
 
-Infinitely scroll images pulled from api
+Infinitely scroll images pulled from api. Add your Unsplash access key in the `.env` file
