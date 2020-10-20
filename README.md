@@ -25,4 +25,5 @@ Infinitely scroll images pulled from api. Add your Unsplash access key in the `.
 
 ### Quiz Me
 
+API used: [Open Trivia DB](https://opentdb.com/)
 npm packages used `dompurify` to sanitize incoming html data. `lodash.shuffle` to shuffle answers array
