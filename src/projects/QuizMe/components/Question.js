@@ -4,7 +4,7 @@ import dompurify from "dompurify";
 
 import Loading from "../../../components/Loading/Loading";
 
-const Question = ({ question }) => {
+const Question = ({ question, answerQuestion, selectedCategory }) => {
     // Sanitize question title before setting it as
     const sanitizer = dompurify.sanitize;
 
@@ -26,9 +26,26 @@ const Question = ({ question }) => {
                 }}
             />
 
-            {answers.map((answer, index) => (
-                <button key={index}>{answer}</button>
+            {answers.map((answer) => (
+                <button
+                    key={answer}
+                    onClick={() => answerQuestion(answer)}
+                    dangerouslySetInnerHTML={{
+                        __html: sanitizer(answer),
+                    }}
+                />
             ))}
+
+            {selectedCategory === "any" && (
+                <div className="QuizMe-category">
+                    <h4>From category:</h4>
+                    <h5
+                        dangerouslySetInnerHTML={{
+                            __html: sanitizer(question.category),
+                        }}
+                    />
+                </div>
+            )}
         </div>
     );
 };

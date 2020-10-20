@@ -10,6 +10,7 @@ import "./QuizMe.css";
 const QuizMe = () => {
     const [question, setQuestion] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("any");
+    const [isCorrect, setIsCorrect] = useState(null);
 
     useEffect(() => {
         fetchQuestion();
@@ -18,8 +19,9 @@ const QuizMe = () => {
     }, [selectedCategory]);
 
     const fetchQuestion = async () => {
-        let quizdbUrl = "https://opentdb.com/api.php?amount=1";
+        setIsCorrect(null);
 
+        let quizdbUrl = "https://opentdb.com/api.php?amount=1";
         // On user caterory selection
         if (selectedCategory !== "any") {
             quizdbUrl += `&category=${selectedCategory}`;
@@ -33,10 +35,19 @@ const QuizMe = () => {
         }
     };
 
+    const handleQuestionAnswered = (answer) =>
+        setIsCorrect(answer === question.correct_answer);
+
     return (
         <div className="QuizMe">
             {/* show the result modal */}
-            {/* <ResultModal /> */}
+            {isCorrect !== null && (
+                <ResultModal
+                    isCorrect={isCorrect}
+                    answer={question.correct_answer}
+                    fetchQuestion={fetchQuestion}
+                />
+            )}
 
             {/* question header  */}
             <div className="QuizMe-question-header">
@@ -46,7 +57,13 @@ const QuizMe = () => {
 
             {/* the question itself  */}
             <div className="QuizMe-question-main">
-                {question && <Question question={question} />}
+                {question && (
+                    <Question
+                        selectedCategory={selectedCategory}
+                        question={question}
+                        answerQuestion={handleQuestionAnswered}
+                    />
+                )}
             </div>
 
             {/* question footer  */}
