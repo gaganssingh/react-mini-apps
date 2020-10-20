@@ -1,42 +1,35 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 
 import Question from "./components/Question";
 import CategorySelector from "./components/CategorySelector";
 import ResultModal from "./components/ResultModal";
 import Scoreboard from "./components/Scoreboard";
+import useQuiz from "./hooks/useQuiz";
 import "./QuizMe.css";
 
 const QuizMe = () => {
-    const [question, setQuestion] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("any");
+    // prettier-ignore
+    const { question, fetchQuestion, selectedCategory, setSelectedCategory } = useQuiz();
+
+    // State
     const [isCorrect, setIsCorrect] = useState(null);
+    const [correctScore, setCorrectScore] = useState(0);
+    const [incorrectScore, setIncorrectScore] = useState(0);
 
-    useEffect(() => {
-        fetchQuestion();
+    // Helper functions
+    const handleQuestionAnswered = (answer) => {
+        const isAnsweredQuesCorrect = answer === question.correct_answer;
+        setIsCorrect(isAnsweredQuesCorrect);
 
-        // eslint-disable-next-line
-    }, [selectedCategory]);
-
-    const fetchQuestion = async () => {
-        setIsCorrect(null);
-
-        let quizdbUrl = "https://opentdb.com/api.php?amount=1";
-        // On user caterory selection
-        if (selectedCategory !== "any") {
-            quizdbUrl += `&category=${selectedCategory}`;
-        }
-
-        try {
-            const { data } = await axios.get(quizdbUrl);
-            setQuestion(data.results[0]);
-        } catch (error) {
-            console.log(error);
-        }
+        isAnsweredQuesCorrect
+            ? setCorrectScore((prevScore) => prevScore + 1)
+            : setIncorrectScore((prevScore) => prevScore + 1);
     };
 
-    const handleQuestionAnswered = (answer) =>
-        setIsCorrect(answer === question.correct_answer);
+    const handleNextQuestion = () => {
+        setIsCorrect(null);
+        fetchQuestion();
+    };
 
     return (
         <div className="QuizMe">
@@ -45,14 +38,17 @@ const QuizMe = () => {
                 <ResultModal
                     isCorrect={isCorrect}
                     answer={question.correct_answer}
-                    fetchQuestion={fetchQuestion}
+                    handleNextQuestion={handleNextQuestion}
                 />
             )}
 
             {/* question header  */}
             <div className="QuizMe-question-header">
                 <CategorySelector setCategory={setSelectedCategory} />
-                <Scoreboard />
+                <Scoreboard
+                    correctScore={correctScore}
+                    incorrectScore={incorrectScore}
+                />
             </div>
 
             {/* the question itself  */}
@@ -68,7 +64,7 @@ const QuizMe = () => {
 
             {/* question footer  */}
             <div className="QuizMe-question-footer">
-                <button onClick={fetchQuestion}>
+                <button onClick={handleNextQuestion}>
                     Go to next question{" "}
                     <span role="img" aria-label="Next question">
                         👉

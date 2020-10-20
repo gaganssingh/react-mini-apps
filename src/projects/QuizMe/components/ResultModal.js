@@ -1,7 +1,7 @@
 import React from "react";
 import dompurify from "dompurify";
 
-const ResultModal = ({ isCorrect, answer, fetchQuestion }) => {
+const ResultModal = ({ isCorrect, answer, handleNextQuestion }) => {
     // Sanitize question title before setting it as
     const sanitizer = dompurify.sanitize;
     return (
@@ -44,7 +44,7 @@ const ResultModal = ({ isCorrect, answer, fetchQuestion }) => {
                     </div>
                 )}
 
-                <button onClick={fetchQuestion}>
+                <button onClick={handleNextQuestion}>
                     Go to next question{" "}
                     <span role="img" aria-label="next question">
                         👉
