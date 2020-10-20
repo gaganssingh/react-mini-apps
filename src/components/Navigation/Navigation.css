@@ -1,5 +1,6 @@
 .Navigation ul {
     display: flex;
+    font-size: 1.2rem;
 }
 
 .Navigation li {
