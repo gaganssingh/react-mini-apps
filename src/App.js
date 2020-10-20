@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
-import Loading from "./components/Loading/Loading";
 
 // Lazy-Loaded Components
 const Pomodoro = React.lazy(() => import("./projects/Pomodoro/Pomodoro"));
@@ -22,7 +21,6 @@ const App = () => {
             <Router>
                 <Header />
                 <Switch>
-                    {/* <React.Suspense fallback={Loading}> */}
                     <React.Suspense fallback={<h2>Loading...</h2>}>
                         <Route exact path="/" component={HomeScreen} />
                         <Route path="/pomodoro" component={Pomodoro} />

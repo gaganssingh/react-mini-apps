@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import InfiniteScroll from "react-infinite-scroll-component";
 
-import Loading from "../../components/Loading/Loading";
 import "./Infinitely.css";
 import DisplayImages from "./DisplayImages";
 import SearchBar from "./SearchBar";
@@ -17,6 +15,7 @@ const Infinitely = () => {
     // Fetch when the page first loads
     useEffect(() => {
         fetchImages();
+        // eslint-disable-next-line
     }, [page]);
 
     const fetchImages = async () => {
