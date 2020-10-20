@@ -1,30 +1,38 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import InfiniteScroll from "react-infinite-scroll-component";
 
+import Loading from "../../components/Loading/Loading";
 import "./Infinitely.css";
+
+const unsplashUrl = "https://api.unsplash.com/photos";
 
 const Infinitely = () => {
     const [images, setImages] = useState([]);
-    useEffect(() => {
-        const unsplashUrl = "https://api.unsplash.com/photos";
-        try {
-            const fetchImages = async () => {
-                const { data } = await axios.get(unsplashUrl, {
-                    headers: {
-                        Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_API_KEY}`,
-                    },
-                    params: {
-                        per_page: 30,
-                    },
-                });
-                setImages(data);
-            };
+    const [page, setPage] = useState(1);
 
-            fetchImages();
+    useEffect(() => {
+        fetchImages();
+    }, [page]);
+
+    const fetchImages = async () => {
+        try {
+            const { data } = await axios.get(unsplashUrl, {
+                headers: {
+                    Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_API_KEY}`,
+                },
+                params: {
+                    per_page: 30,
+                    page,
+                },
+            });
+            setImages((previousImages) => [...previousImages, ...data]);
+
+            console.log("page", page);
         } catch (error) {
             console.log(error);
         }
-    }, []);
+    };
 
     console.log(images);
 
@@ -47,16 +55,29 @@ const Infinitely = () => {
                 <button>Search</button>
             </form>
 
-            <div className="Infinitely-image-grid">
-                {images.map((image) => (
-                    <div className="Infinitely-image" key={image.id}>
-                        <img
-                            src={image.urls.regular}
-                            alt={image.alt_description}
-                        />
-                    </div>
-                ))}
-            </div>
+            <InfiniteScroll
+                dataLength={images.length}
+                next={() => setPage((previousPage) => previousPage + 1)}
+                hasMore={true}
+                loader={<Loading />}
+            >
+                <div className="Infinitely-image-grid">
+                    {images.map((image) => (
+                        <a
+                            className="Infinitely-image"
+                            key={image.id}
+                            href={image.links.html}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                src={image.urls.regular}
+                                alt={image.alt_description}
+                            />
+                        </a>
+                    ))}
+                </div>
+            </InfiniteScroll>
         </div>
     );
 };
