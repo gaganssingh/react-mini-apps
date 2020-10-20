@@ -24,3 +24,5 @@ Canvas Api
 Infinitely scroll images pulled from api. Add your Unsplash access key in the `.env` file
 
 ### Quiz Me
+
+npm packages used `dompurify` to sanitize incoming html data. `lodash.shuffle` to shuffle answers array

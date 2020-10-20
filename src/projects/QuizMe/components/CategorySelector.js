@@ -1,4 +1,5 @@
 import React from "react";
+
 import categories from "../categories";
 
 export default function CategorySelector() {
