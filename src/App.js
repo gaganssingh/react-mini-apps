@@ -11,6 +11,7 @@ const Pomodoro = React.lazy(() => import("./projects/Pomodoro/Pomodoro"));
 const Markdown = React.lazy(() => import("./projects/Markdown/Markdown"));
 const MiniZelda = React.lazy(() => import("./projects/MiniZelda/MiniZelda"));
 const Infinitely = React.lazy(() => import("./projects/Infinitely/Infinitely"));
+const QuizMe = React.lazy(() => import("./projects/QuizMe/QuizMe"));
 const RockPaperScissors = React.lazy(() =>
     import("./projects/RockPaperScissors/RockPaperScissors")
 );
@@ -28,6 +29,7 @@ const App = () => {
                         <Route path="/markdown" component={Markdown} />
                         <Route path="/minizelda" component={MiniZelda} />
                         <Route path="/infinitely" component={Infinitely} />
+                        <Route path="/quiz" component={QuizMe} />
                         <Route
                             path="/rockpaperscissors"
                             component={RockPaperScissors}

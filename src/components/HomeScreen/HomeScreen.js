@@ -25,6 +25,10 @@ const HomeScreen = () => {
             <Link to="/infinitely">
                 <h1>Infinitely</h1>
             </Link>
+
+            <Link to="/quiz">
+                <h1>Quiz me</h1>
+            </Link>
         </main>
     );
 };

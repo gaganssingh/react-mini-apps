@@ -3,6 +3,9 @@
 -   Pomodoro Timer
 -   Markdown Editor
 -   Rock Paper Scissors
+-   Mini Zelda
+-   Infinitely
+-   Quiz Me
 
 ### Pomodoro Timer
 
@@ -10,12 +13,14 @@
 
 npm packages used `parse, remark-react & unified`
 
-## Rock Paper Scissors
+### Rock Paper Scissors
 
-## Mini Zelda
+### Mini Zelda
 
 Canvas Api
 
-## Infinitely \_\_\_ FINISH SEARCH FUNCTIONALITY
+### Infinitely \_\_\_ FINISH SEARCH FUNCTIONALITY
 
 Infinitely scroll images pulled from api. Add your Unsplash access key in the `.env` file
+
+### Quiz Me
