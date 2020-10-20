@@ -51,7 +51,7 @@ const QuizMe = () => {
 
             {/* question footer  */}
             <div className="QuizMe-question-footer">
-                <button>
+                <button onClick={fetchQuestion}>
                     Go to next question{" "}
                     <span role="img" aria-label="Next question">
                         👉
