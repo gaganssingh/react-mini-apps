@@ -1,8 +1,5 @@
 export default [
-    {
-        id: "any",
-        name: "Any Category",
-    },
+    { id: "any", name: "Any" },
     { id: 9, name: "General Knowledge" },
     { id: 10, name: "Entertainment: Books" },
     { id: 11, name: "Entertainment: Film" },

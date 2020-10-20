@@ -1,18 +1,26 @@
 import React from "react";
+import dompurify from "dompurify";
 
 import categories from "../categories";
 
-export default function CategorySelector() {
+const CategorySelector = ({ setCategory }) => {
+    const sanitizer = dompurify.sanitize;
     return (
         <div className="QuizMe-category-selector">
             <p>Select Category</p>
-            <select>
-                {categories.map((category, index) => (
-                    <option key={index} value={category.id}>
-                        {category.name}
-                    </option>
+            <select onChange={(e) => setCategory(e.target.value)}>
+                {categories.map((category) => (
+                    <option
+                        key={category.id}
+                        value={category.id}
+                        dangerouslySetInnerHTML={{
+                            __html: sanitizer(category.name),
+                        }}
+                    />
                 ))}
             </select>
         </div>
     );
-}
+};
+
+export default CategorySelector;

@@ -7,17 +7,26 @@ import ResultModal from "./components/ResultModal";
 import Scoreboard from "./components/Scoreboard";
 import "./QuizMe.css";
 
-const quizdbUrl = "https://opentdb.com/api.php?amount=1";
-
 const QuizMe = () => {
     const [question, setQuestion] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("any");
+
     useEffect(() => {
         fetchQuestion();
-    }, []);
+
+        // eslint-disable-next-line
+    }, [selectedCategory]);
 
     const fetchQuestion = async () => {
+        let quizdbUrl = "https://opentdb.com/api.php?amount=1";
+
+        // On user caterory selection
+        if (selectedCategory !== "any") {
+            quizdbUrl += `&category=${selectedCategory}`;
+        }
+
         try {
-            const { data } = await axios.get(`${quizdbUrl}`);
+            const { data } = await axios.get(quizdbUrl);
             setQuestion(data.results[0]);
         } catch (error) {
             console.log(error);
@@ -31,7 +40,7 @@ const QuizMe = () => {
 
             {/* question header  */}
             <div className="QuizMe-question-header">
-                <CategorySelector />
+                <CategorySelector setCategory={setSelectedCategory} />
                 <Scoreboard />
             </div>
 
@@ -42,7 +51,12 @@ const QuizMe = () => {
 
             {/* question footer  */}
             <div className="QuizMe-question-footer">
-                <button>Go to next question 👉</button>
+                <button>
+                    Go to next question{" "}
+                    <span role="img" aria-label="Next question">
+                        👉
+                    </span>
+                </button>
             </div>
         </div>
     );
