@@ -16,6 +16,6 @@ npm packages used `parse, remark-react & unified`
 
 Canvas Api
 
-## Infinitely
+## Infinitely \_\_\_ FINISH SEARCH FUNCTIONALITY
 
 Infinitely scroll images pulled from api. Add your Unsplash access key in the `.env` file
