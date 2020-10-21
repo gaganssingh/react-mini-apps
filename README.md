@@ -1,4 +1,4 @@
-## React Mini Apps
+## React Mini Apps w/ Auth0 Authentication
 
 -   Pomodoro Timer
 -   Markdown Editor
@@ -6,6 +6,12 @@
 -   Mini Zelda
 -   Infinitely
 -   Quiz Me
+
+### Auth0 Setup:
+
+-   Create a new app in your Auth0 account. I named mine `React Mini Apps - Auth`.
+-   Create a Database under `Connections` named `Email-Password-DB`. Assign this db to app you created above from the `Applications` tab.
+-   After deploying to your preferred hosting service, add the live url to the list of allowed urls under `Application URIs` of your Auth0 backend.
 
 ### Pomodoro Timer
 
