@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import createAuth0Client from "@auth0/auth0-spa-js";
 
 import { AuthContext } from "./contexts/authContext";
 import Header from "./components/Header/Header";
@@ -20,27 +19,6 @@ const RockPaperScissors = React.lazy(() =>
 const App = () => {
     const auth0 = useContext(AuthContext);
     console.log(auth0);
-
-    // Initialize Auth0 Client on first app load
-    // Enables Login/logout functionality
-    useEffect(() => {
-        try {
-            const initAuthClient = async () => {
-                const auth0 = await createAuth0Client({
-                    domain: process.env.REACT_APP_AUTH0_DOMAIN_URL,
-                    client_id: process.env.JOJDW4T6tbwXpuoVBbCZGtOW0kvn3Q7G,
-                });
-
-                const isAuthenticated = await auth0.isAuthenticated();
-                const user = await auth0.getUser();
-                console.log("isAuthenticated", isAuthenticated);
-                console.log("user", user);
-            };
-            initAuthClient();
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
 
     return (
         <Router>
