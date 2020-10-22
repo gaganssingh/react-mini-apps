@@ -7,6 +7,11 @@
 -   Infinitely
 -   Quiz Me
 
+#### Test User
+
+-   Username: demo@test.com
+-   Password: vtu5W8&82V
+
 ### Auth0 Setup:
 
 -   Create a new app in your Auth0 account. I named mine `React Mini Apps - Auth`.

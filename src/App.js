@@ -1,7 +1,6 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { AuthContext } from "./contexts/authContext";
 import Header from "./components/Header/Header";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
 import "./App.css";
@@ -17,9 +16,6 @@ const RockPaperScissors = React.lazy(() =>
 );
 
 const App = () => {
-    const auth0 = useContext(AuthContext);
-    console.log(auth0);
-
     return (
         <Router>
             <Header />
