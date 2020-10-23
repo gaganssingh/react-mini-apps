@@ -1,8 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+
 import "./Navigation.css";
 
 const Navigation = () => {
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
     return (
         <nav className="Navigation">
             <ul>
@@ -19,13 +23,25 @@ const Navigation = () => {
                     <NavLink to="/contact">Contact</NavLink>
                 </li>
 
-                <li>
-                    <NavLink to="/login">Login</NavLink>
-                </li>
+                {!isAuthenticated && (
+                    <li
+                        className="Navigation-pointer"
+                        onClick={loginWithRedirect}
+                    >
+                        Login
+                    </li>
+                )}
 
-                <li>
-                    <NavLink to="/logout">Logout</NavLink>
-                </li>
+                {isAuthenticated && (
+                    <li
+                        className="Navigation-pointer"
+                        onClick={() =>
+                            logout({ returnTo: window.location.origin })
+                        }
+                    >
+                        Logout
+                    </li>
+                )}
             </ul>
         </nav>
     );
