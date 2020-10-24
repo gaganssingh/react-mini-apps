@@ -29,6 +29,10 @@ const HomeScreen = () => {
             <Link to="/quiz">
                 <h1>Quiz me</h1>
             </Link>
+
+            <Link to="/memory">
+                <h1>Match By Memory</h1>
+            </Link>
         </main>
     );
 };

@@ -13,13 +13,15 @@ const Markdown = React.lazy(() => import("./projects/Markdown/Markdown"));
 const MiniZelda = React.lazy(() => import("./projects/MiniZelda/MiniZelda"));
 const Infinitely = React.lazy(() => import("./projects/Infinitely/Infinitely"));
 const QuizMe = React.lazy(() => import("./projects/QuizMe/QuizMe"));
+const MemoryMatcher = React.lazy(() =>
+    import("./projects/MemoryMatcher/MemoryMatcher")
+);
 const RockPaperScissors = React.lazy(() =>
     import("./projects/RockPaperScissors/RockPaperScissors")
 );
 
 const App = () => {
     const { isAuthenticated } = useAuth0();
-    console.log("App -> isAuthenticated", isAuthenticated);
 
     const protectedRoutes = (
         <Switch>
@@ -30,6 +32,7 @@ const App = () => {
                 <Route path="/minizelda" component={MiniZelda} />
                 <Route path="/infinitely" component={Infinitely} />
                 <Route path="/quiz" component={QuizMe} />
+                <Route path="/memory" component={MemoryMatcher} />
                 <Route
                     path="/rockpaperscissors"
                     component={RockPaperScissors}
