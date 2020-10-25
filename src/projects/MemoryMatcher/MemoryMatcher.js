@@ -17,8 +17,22 @@ const pokemon = [
 const doublePokemon = shuffle([...pokemon, ...pokemon]);
 
 const MemoryMatcher = () => {
-    const [opened, setOpened] = useState([1]);
+    const [opened, setOpened] = useState([]);
+    const [matched, setMatched] = useState([]);
 
+    // Check if user selection results in a match
+    useEffect(() => {
+        if (opened.length < 2) return;
+
+        const firstPokemon = doublePokemon[opened[0]];
+        const secondPokemon = doublePokemon[opened[1]];
+
+        if (firstPokemon.name === secondPokemon.name) {
+            setMatched((matched) => [...matched, firstPokemon.id]);
+        }
+    }, [opened]);
+
+    // Close all cards afte two cards have been selected
     useEffect(() => {
         if (opened.length === 2) {
             setTimeout(() => {
@@ -27,25 +41,39 @@ const MemoryMatcher = () => {
         }
     }, [opened]);
 
+    // Check winner
+    useEffect(() => {
+        if (matched.length === pokemon.length) alert("You Won!!");
+    }, [matched]);
+
     const flipCard = (index) => setOpened((opened) => [...opened, index]);
+
+    const resetGame = () => {
+        setOpened([]);
+        setMatched([]);
+    };
 
     return (
         <div className="MemoryMatcher">
             <div className="MemoryMatcher-cards">
-                {doublePokemon.map((poke, idx) => {
+                {doublePokemon.map((pokemon, idx) => {
                     let isFlipped = false;
 
                     if (opened.includes(idx)) isFlipped = true;
+                    if (matched.includes(pokemon.id)) isFlipped = true;
                     return (
                         <Card
                             key={idx}
-                            poke={poke}
+                            pokemon={pokemon}
                             isFlipped={isFlipped}
                             index={idx}
                             flipCard={flipCard}
                         />
                     );
                 })}
+            </div>
+            <div className="MemoryMatcher-reset-button" onClick={resetGame}>
+                Reset Game
             </div>
         </div>
     );

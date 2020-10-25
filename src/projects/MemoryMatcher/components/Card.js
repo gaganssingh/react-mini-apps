@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ poke, isFlipped, flipCard, index }) => {
+const Card = ({ pokemon, isFlipped, flipCard, index }) => {
     return (
         <button
             className={`MemoryMatcher-pokemon-card ${
@@ -11,8 +11,8 @@ const Card = ({ poke, isFlipped, flipCard, index }) => {
             <div className="MemoryMatcher-inner">
                 <div className="MemoryMatcher-front">
                     <img
-                        src={`https://pokeres.bastionbot.org/images/pokemon/${poke.id}.png`}
-                        alt={poke.name}
+                        src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+                        alt={pokemon.name}
                         width="100"
                     />
                 </div>
